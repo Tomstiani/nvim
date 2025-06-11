@@ -32,5 +32,7 @@ return {
 				},
 			},
 		})
+
+		require("telescope").load_extension("package_info")
 	end,
 }
