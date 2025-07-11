@@ -23,6 +23,7 @@ return {
 					i = {
 						["<C-k>"] = "move_selection_previous",
 						["<C-j>"] = "move_selection_next",
+						["<C-q>"] = require("telescope.actions").send_selected_to_qflist,
 					},
 				},
 			},
