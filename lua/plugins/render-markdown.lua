@@ -4,5 +4,5 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		"echasnovski/mini.icons",
 	},
-	ft = "markdown",
+	ft = { "markdown", "codecompanion" },
 }
