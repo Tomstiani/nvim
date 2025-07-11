@@ -7,8 +7,8 @@ return {
 	},
 
 	keys = {
-		{ "<leader>cc", "<cmd>CodeCompanionChat toggle<cr>", { desc = "Toggle CodeCompanionChat" } },
-		{ "<leader>ca", "<cmd>CodeCompanionAction", { desc = "CodeCompanionAction" } },
+		{ "<leader>cc", "<cmd>CodeCompanionChat toggle<cr>", desc = "Toggle CodeCompanionChat" },
+		{ "<leader>ca", "<cmd>CodeCompanionAction<cr>", desc = "Trigger CodeCompanion Action" },
 	},
 
 	config = function()
@@ -18,39 +18,30 @@ return {
 					return require("codecompanion.adapters").extend("ollama", {
 						name = "ollama",
 						schema = {
-							model = {
-								default = "codellama:13b",
-							},
+							model = { default = "qwen2.5-coder:14b" },
 						},
 					})
 				end,
 				anthropic = function()
 					return require("codecompanion.adapters").extend("anthropic", {
 						name = "anthropic",
+						schema = {
+							model = { default = "claude-3-5-haiku-20241022" },
+						},
 					})
 				end,
 			},
 
 			strategies = {
-				chat = {
-					adapter = "ollama",
-				},
+				chat = { adapter = "ollama" },
 				inline = {
 					adapter = "ollama",
 					keymaps = {
-						accept_change = {
-							modes = { n = "ca" },
-							description = "Accept the change",
-						},
-						reject_change = {
-							modes = { n = "cr" },
-							description = "Reject the change",
-						},
+						accept_change = { modes = { n = "ca" }, description = "Accept the change" },
+						reject_change = { modes = { n = "cr" }, description = "Reject the change" },
 					},
 				},
-				cmd = {
-					adapter = "ollama",
-				},
+				cmd = { adapter = "ollama" },
 			},
 
 			extensions = {
