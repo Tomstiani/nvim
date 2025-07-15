@@ -5,10 +5,10 @@ return {
 		require("conform").setup({
 			formatters_by_ft = {
 				lua = { "stylua" },
-				javascript = { "biome" },
-				typescript = { "biome" },
-				javascriptreact = { "biome" },
-				typescriptreact = { "biome" },
+				javascript = { "biome", "biome-organize-imports" },
+				typescript = { "biome", "biome-organize-imports" },
+				javascriptreact = { "biome", "biome-organize-imports" },
+				typescriptreact = { "biome", "biome-organize-imports" },
 				json = { "biome" },
 				jsonc = { "biome" },
 				markdown = { "biome" },
@@ -29,14 +29,14 @@ return {
 
 			format_on_save = {
 				timeout_ms = 1000,
-				lsp_fallback = true,
+				lsp_fallback = "never",
 			},
 
 			notify_on_error = true, -- Optional
 		})
 
 		vim.keymap.set({ "n", "v" }, "<leader>F", function()
-			require("conform").format({ async = true, lsp_fallback = true })
+			require("conform").format({ async = true, lsp_format = "never" })
 		end, { desc = "Format buffer" })
 	end,
 }
