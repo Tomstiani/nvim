@@ -11,8 +11,12 @@ return {
 		{ "<leader>fh", "<cmd>Telescope help_tags<CR>", desc = "Help Tags" },
 		{ "<leader>fs", "<cmd>Telescope current_buffer_fuzzy_find<CR>", desc = "Search in Buffer" },
 		{ "<leader>fc", "<cmd>Telescope commands<CR>", desc = "Command Palette" },
+		{ "<leader>fw", "<cmd>Telescope grep_string<CR>", desc = "Find Word" },
+		{ "<leader>fr", "<cmd>Telescope resume<CR>", desc = "Resume Last Search" },
 	},
 	config = function()
+		local actions = require("telescope.actions")
+		
 		require("telescope").setup({
 			defaults = {
 				layout_config = {
@@ -21,15 +25,31 @@ return {
 				},
 				mappings = {
 					i = {
-						["<C-k>"] = "move_selection_previous",
-						["<C-j>"] = "move_selection_next",
-						["<C-q>"] = require("telescope.actions").send_selected_to_qflist,
+						["<C-k>"] = actions.move_selection_previous,
+						["<C-j>"] = actions.move_selection_next,
+						["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+						["<C-a>"] = actions.send_to_qflist + actions.open_qflist,
 					},
 				},
 			},
 			pickers = {
 				find_files = {
 					hidden = true,
+					find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+				},
+				live_grep = {
+					additional_args = function()
+						return { "--hidden" }
+					end,
+				},
+				buffers = {
+					show_all_buffers = true,
+					sort_lastused = true,
+					mappings = {
+						i = {
+							["<c-d>"] = actions.delete_buffer,
+						}
+					}
 				},
 			},
 		})

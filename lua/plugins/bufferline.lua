@@ -13,6 +13,17 @@ return {
 					show_buffer_close_icons = true,
 					show_close_icon = false,
 					always_show_bufferline = true,
+					custom_filter = function(buf_number, buf_numbers)
+						local buf_name = vim.fn.bufname(buf_number)
+						local buf_ft = vim.bo[buf_number].filetype
+						
+						-- Filter out claude-code buffers by name or filetype
+						if buf_name:match("claude") or buf_name:match("Claude") or buf_ft == "claude-code" then
+							return false
+						end
+						
+						return true
+					end,
 				},
 			})
 

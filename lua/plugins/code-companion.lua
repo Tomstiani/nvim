@@ -1,15 +1,12 @@
 return {
 	"olimorris/codecompanion.nvim",
+	enabled = false, -- Disabled in favor of claude-code and supermaven
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"nvim-treesitter/nvim-treesitter",
 		"ravitemer/mcphub.nvim",
 	},
 
-	keys = {
-		{ "<leader>cc", "<cmd>CodeCompanionChat toggle<cr>", desc = "Toggle CodeCompanionChat" },
-		{ "<leader>ca", "<cmd>CodeCompanionAction<cr>", desc = "Trigger CodeCompanion Action" },
-	},
 
 	config = function()
 		require("codecompanion").setup({

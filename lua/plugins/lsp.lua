@@ -15,11 +15,10 @@ return {
 		opts = {
 			automatic_enable = false,
 			ensure_installed = {
-				-- "ts_ls",
+				"ts_ls",
 				"html",
 				"cssls",
 				"tailwindcss",
-				"stylua",
 				"biome",
 			},
 		},
@@ -44,7 +43,6 @@ return {
 				html = {},
 				cssls = {},
 				tailwindcss = {},
-				stylua = {},
 				biome = {},
 			}
 

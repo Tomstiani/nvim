@@ -23,8 +23,8 @@ return {
 						"$FILENAME",
 						"--fix",
 					},
+					stdin = true,
 				},
-				stdin = true,
 			},
 
 			format_on_save = {
